@@ -11,14 +11,16 @@ static bool registered = JStd::CmdLine::Register(L"26", problem);
 using namespace std;
 using namespace JStd;
 
-int determineRepeatingDecimals(int div)
+int determineRepeatingDecimals(int div, bool output)
 {
-	cout << "1/" << div << " = 0.";
+	if(output)
+		cout << "1/" << div << " = 0.";
 	int top = 10;
 	while(top < div)
 	{
 		top *= 10;
-		cout << '0';
+		if(output)
+			cout << '0';
 	}
 
 	vector<bool> vectDone;//(10,false);
@@ -31,7 +33,8 @@ int determineRepeatingDecimals(int div)
 		if(vectDone[top])
 			break;
 		vectDone[top] = true;
-		cout << top / div;
+		if(output)
+			cout << top / div;
 		top %= div;
 		++decCount;
 		top *= 10;
@@ -41,14 +44,19 @@ int determineRepeatingDecimals(int div)
 		{
 			++decCount;
 			top *= 10;
-			cout << '0';
+			if(output)
+				cout << '0';
 		}
 	}
 	if(top > 0)
-		cout << "... " << decCount << " repeating decimals.";
+	{
+		if(output)
+			cout << "... " << decCount << " repeating decimals.";
+	}
 	else
 		decCount = 0;
-	cout << endl;
+	if(output)
+		cout << endl;
 
 	return decCount;
 }
@@ -59,7 +67,7 @@ int determineNumberWithMostRepeatingDecimals(int numMax)
 	int numWithMostDecimals = 1;
 	for(int i=1; i < numMax; ++i)
 	{
-		int currDecimals = determineRepeatingDecimals(i);
+		int currDecimals = determineRepeatingDecimals(i, false);
 		if(currDecimals > mostDecimals)
 		{
 			mostDecimals = currDecimals;
@@ -67,7 +75,7 @@ int determineNumberWithMostRepeatingDecimals(int numMax)
 		}
 	}
 
-	determineRepeatingDecimals(numWithMostDecimals);
+	determineRepeatingDecimals(numWithMostDecimals, true);
 	cout << "Number with most decimals is " << numWithMostDecimals << ". Done." << endl;
 	return numWithMostDecimals;
 }
@@ -87,7 +95,7 @@ void problem(int argc, wchar_t* argv[])
 		num = 0;
 		cin >> num;
 		if(num > 0)
-			determineRepeatingDecimals(num);
+			determineRepeatingDecimals(num, true);
 	}while(num > 0);
 }
 
