@@ -7,9 +7,9 @@ using namespace std;
 int _tmain(int argc, _TCHAR* argv[])
 {
 	JStd::CmdLine::CallDefaultWithCatch(wcerr, argc, argv);
-#ifdef _DEBUG
+//#ifdef _DEBUG
 	cin.get();
-#endif
+//#endif
 	return 0;
 }
 

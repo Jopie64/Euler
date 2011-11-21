@@ -66,7 +66,7 @@ public:
 		for(int num = m_numMax; num > 1; --num)
 		{
 			int currSteps = determineNbSteps(num);
-			if(currSteps > nbSteps)
+			if(currSteps >= nbSteps)
 			{
 				nbSteps = currSteps;
 				numMostSteps = num;
