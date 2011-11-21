@@ -41,6 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="ext"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -114,6 +115,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="ext"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -194,6 +196,26 @@
 					/>
 				</FileConfiguration>
 			</File>
+			<Filter
+				Name="JStd"
+				>
+				<File
+					RelativePath=".\ext\jstd\CmdLine.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ext\jstd\JStd.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Problems"
+				>
+				<File
+					RelativePath=".\Problem14.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -208,6 +230,18 @@
 				RelativePath=".\targetver.h"
 				>
 			</File>
+			<Filter
+				Name="JStd"
+				>
+				<File
+					RelativePath=".\ext\jstd\CmdLine.h"
+					>
+				</File>
+				<File
+					RelativePath=".\ext\jstd\JStd.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Resource Files"
