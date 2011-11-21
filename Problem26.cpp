@@ -21,19 +21,24 @@ void determineRepeatingDecimals(int div)
 		cout << '0';
 	}
 
-	vector<bool> vectDone(10,false);
+	vector<bool> vectDone;//(10,false);
 
 	int decCount = 0;
 	for(; top != 0;)
 	{
-		int result = top / div;
-		if(vectDone[result])
+		if(vectDone.size() <= top)
+			vectDone.resize(top + 1);
+		if(vectDone[top])
 			break;
-		vectDone[result] = true;
+		vectDone[top] = true;
+		int result = top / div;
+
 		cout << result;
 		top -= result * div;
 		++decCount;
 		top *= 10;
+		if(top == 0)
+			break;
 		while(top < div)
 		{
 			++decCount;
@@ -58,6 +63,7 @@ void problem(int argc, wchar_t* argv[])
 	do
 	{
 		cout << "Number: ";
+		num = 0;
 		cin >> num;
 		if(num > 0)
 			determineRepeatingDecimals(num);

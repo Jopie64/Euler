@@ -96,6 +96,7 @@ void problem(int argc, wchar_t* argv[])
 	do
 	{
 		cout << "Number: ";
+		num = 0;
 		cin >> num;
 		if(num > 0)
 			determineNbStepsWithOutput(num);
