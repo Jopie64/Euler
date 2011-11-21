@@ -31,10 +31,8 @@ int determineRepeatingDecimals(int div)
 		if(vectDone[top])
 			break;
 		vectDone[top] = true;
-		int result = top / div;
-
-		cout << result;
-		top -= result * div;
+		cout << top / div;
+		top %= div;
 		++decCount;
 		top *= 10;
 		if(top == 0)
