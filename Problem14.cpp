@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include <vector>
 
 namespace problem14
 {
@@ -29,46 +30,61 @@ int determineNbStepsWithOutput(calc_int_type num)
 	return steps;
 }
 
-int determineNbSteps(calc_int_type num)
+struct Ctxt
 {
-	int steps = 0;
-	while(num != 1)
-	{
-		++steps;
-		if(num & 1)
-			num = 3 * num + 1;
-		else
-			num /= 2;
-	}
-	return steps;
-}
+public:
+	Ctxt(int numMax):m_numMax(numMax){ m_vectSteps.resize(numMax, 0); }
 
-int determineNumberWithMostSteps(int numMax)
-{
-	int numMostSteps = 1;
-	int nbSteps = 0;
-	for(int num = numMax; num > 1; --num)
+	int m_numMax;
+	vector<int> m_vectSteps;
+
+	int determineNbSteps(calc_int_type num)
 	{
-		int currSteps = determineNbSteps(num);
-		if(currSteps > nbSteps)
-		{
-			nbSteps = currSteps;
-			numMostSteps = num;
-			cout << "Number " << numMostSteps << " in " << nbSteps << endl;
-		}
-		if(num % 100 == 0)
-			cout << num << "...\r" << flush;
+		if(num == 1)
+			return 0;
+	
+		if(num < m_numMax && m_vectSteps[(int)num])
+			return m_vectSteps[(int)num];
+
+		calc_int_type newNum = num;
+		if(newNum & 1)
+			newNum = 3 * newNum + 1;
+		else
+			newNum /= 2;
+
+		int steps = determineNbSteps(newNum) + 1;
+		if(num < m_numMax)
+			m_vectSteps[(int)num] = steps;
+		return steps;
 	}
-	determineNbStepsWithOutput(numMostSteps);
-	cout << "Done." << endl;
-	return numMostSteps;
-}
+
+	int determineNumberWithMostSteps()
+	{
+		int numMostSteps = 1;
+		int nbSteps = 0;
+		for(int num = m_numMax; num > 1; --num)
+		{
+			int currSteps = determineNbSteps(num);
+			if(currSteps > nbSteps)
+			{
+				nbSteps = currSteps;
+				numMostSteps = num;
+				cout << "Number " << numMostSteps << " in " << nbSteps << endl;
+			}
+			if(num % 100 == 0)
+				cout << num << "...\r" << flush;
+		}
+		determineNbStepsWithOutput(numMostSteps);
+		cout << "Done." << endl;
+		return numMostSteps;
+	}
+};
 
 void problem(int argc, wchar_t* argv[])
 {
 	if(argc > 2)
 	{
-		determineNumberWithMostSteps(_wtoi(argv[2]));
+		Ctxt(_wtoi(argv[2])).determineNumberWithMostSteps();
 		return;
 	}
 
