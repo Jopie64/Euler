@@ -62,6 +62,7 @@ public:
 	{
 		int numMostSteps = 1;
 		int nbSteps = 0;
+		int clkShow = clock();
 		for(int num = m_numMax; num > 1; --num)
 		{
 			int currSteps = determineNbSteps(num);
@@ -71,8 +72,11 @@ public:
 				numMostSteps = num;
 				cout << "Number " << numMostSteps << " in " << nbSteps << endl;
 			}
-			if(num % 100 == 0)
+			if(clock() - clkShow > 500)
+			{
+				clkShow = clock();
 				cout << num << "...\r" << flush;
+			}
 		}
 		determineNbStepsWithOutput(numMostSteps);
 		cout << "Done." << endl;
