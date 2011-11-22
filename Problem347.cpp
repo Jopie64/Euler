@@ -20,17 +20,17 @@ int calcMax(int p, int N)
 
 int M(int p, int q, int N)
 {
-	int ip = N - N % p;
-	int iq = N - N % q;
-	while(ip != iq && ip > 0 && iq > 0)
+	int ip = calcMax(p, N);
+	int iq = calcMax(q, N);
+	while(ip != iq && ip > 1 && iq > 1)
 	{
 		if(ip > iq)
-			ip -= p;
+			ip /= p;
 		else
-			iq -= q;
+			iq /= q;
 	}
 
-	if(ip <= 0 || iq <= 0) return 0;
+	if(ip <= 1 || iq <= 1) return 0;
 	return ip;
 }
 
