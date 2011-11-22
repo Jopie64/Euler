@@ -12,30 +12,73 @@ static bool registered = JStd::CmdLine::Register(L"347", problem);
 using namespace std;
 using namespace JStd;
 
-int calcMax(int p, int N)
-{
-	int ex = (int)(log((double)N) / log((double)p));
-	return (int)pow((double)p, ex);
-}
+typedef int divider_type;
 
-int M(int p, int q, int N)
+struct Dividers
 {
-	int ip = calcMax(p, N);
-	int iq = calcMax(q, N);
-	while(ip != iq && ip > 1 && iq > 1)
+	Dividers():div1(0), div2(0){}
+
+	void addDiv(divider_type div)
 	{
-		if(ip > iq)
-			ip /= p;
-		else
-			iq /= q;
+		if(div1 < 0)
+			return;
+		if(div1 > 0)
+		{
+			if(div2 > 0)
+			{
+				div1 = -1;
+				return;
+			}
+			div2 = div;
+			return;
+		}
+		div1 = div;
 	}
 
-	if(ip <= 1 || iq <= 1) return 0;
-	return ip;
-}
+	bool isPrime() const { return div1 == 0; }
+
+	divider_type div1;
+	divider_type div2;
+};
+
+struct Ctxt
+{
+	Ctxt(int numMax){ init(numMax); }
+
+	void init(int numMax)
+	{
+		cout << "Initializing up to " << numMax << "..." << endl;
+		m_vectDiv.clear();
+		++numMax; //do 1 higher, because vector is zero based.
+		m_vectDiv.resize(numMax);
+		for(int i = 2; i < numMax; ++i)
+		{
+			if(!m_vectDiv[i].isPrime())
+				continue;
+			for(int j = i + i; j < numMax; j += i)
+				m_vectDiv[j].addDiv(i);
+		}
+
+		cout << "Done." << endl;
+	}
+
+	vector<Dividers> m_vectDiv;
+
+	int M(int p, int q, int N)
+	{
+		if(q < p) swap(p,q);
+		int start = N - N % q;
+
+		for(int i = start; i > q; i -= q)
+			if(m_vectDiv[i].div1 == p)
+				return i;
+		return 0;
+	}
+};
 
 void problem(int argc, wchar_t* argv[])
 {
+	Ctxt ctxt(1000000);
 
 	int p;
 	do
@@ -51,7 +94,7 @@ void problem(int argc, wchar_t* argv[])
 		cin >> q;
 		cout << "N: " << flush;
 		cin >> N;
-		cout << "M: " << M(p,q,N) << endl;
+		cout << "M: " << ctxt.M(p,q,N) << endl;
 	}while(true);
 
 }
