@@ -74,10 +74,36 @@ struct Ctxt
 				return i;
 		return 0;
 	}
+
+	__int64 S(int numMax)
+	{
+		__int64 result = 0;
+		for(int i = 2; i < numMax; ++i)
+		{
+			if(!m_vectDiv[i].isPrime())
+				continue;
+			int jmax = numMax / i;
+			for(int j = i + 1; j <= jmax; ++j)
+			{
+				if(!m_vectDiv[j].isPrime())
+					continue;
+				result += M(i,j,numMax);
+			}
+		}
+		return result;
+	}
 };
 
 void problem(int argc, wchar_t* argv[])
 {
+	if(argc > 2)
+	{
+		int N = _wtoi(argv[2]);
+		Ctxt ctxt(N);
+		cout << "S(" << N << ") = " << ctxt.S(N) << endl;
+		return;
+	}
+
 	Ctxt ctxt(1000000);
 
 	int p;
