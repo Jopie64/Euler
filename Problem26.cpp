@@ -4,12 +4,13 @@
 namespace problem26
 {
 
-void problem(int argc, wchar_t* argv[]);
-
-static bool registered = JStd::CmdLine::Register(L"26", problem);
-
 using namespace std;
 using namespace JStd;
+using JStd::CmdLine::CmdLine;
+
+void problem(CmdLine& cmdLine);
+static bool registered = JStd::CmdLine::Register(L"26", problem);
+
 
 int determineRepeatingDecimals(int div, bool output)
 {
@@ -80,11 +81,12 @@ int determineNumberWithMostRepeatingDecimals(int numMax)
 	return numWithMostDecimals;
 }
 
-void problem(int argc, wchar_t* argv[])
+void problem(CmdLine& cmdLine)
 {
-	if(argc > 2)
+	std::wstring number = cmdLine.next();
+	if(!number.empty())
 	{
-		determineNumberWithMostRepeatingDecimals(_wtoi(argv[2]));
+		determineNumberWithMostRepeatingDecimals(_wtoi(number.c_str()));
 		return;
 	}
 

@@ -4,8 +4,9 @@
 
 namespace problem347
 {
+using JStd::CmdLine::CmdLine;
 
-void problem(int argc, wchar_t* argv[]);
+void problem(CmdLine& cmdLine);
 
 static bool registered = JStd::CmdLine::Register(L"347", problem);
 
@@ -124,13 +125,21 @@ int doit(){
 	return 0;
 }
 
-void problem(int argc, wchar_t* argv[])
+void problem(CmdLine& cmdLine)
 {
 	//doit();
 	//return;
-	if(argc > 2)
+
+	std::wstring s = cmdLine.next(L's');
+	std::wstring hoi = cmdLine.next(L"hoi");
+	std::wstring dag = cmdLine.next(L'd', L"dag");
+	bool hasA = cmdLine.hasOption(L'a');
+	bool hasB = cmdLine.hasOption(L'b', L"bla");
+
+	std::wstring number = cmdLine.next();
+	if(!number.empty())
 	{
-		int N = _wtoi(argv[2]);
+		int N = _wtoi(number.c_str());
 		Ctxt ctxt(N);
 		cout << "S(" << N << ") = " << ctxt.S(N) << endl;
 		return;

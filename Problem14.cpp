@@ -3,13 +3,13 @@
 
 namespace problem14
 {
-
-void problem(int argc, wchar_t* argv[]);
-
-static bool registered = JStd::CmdLine::Register(L"14", problem);
-
 using namespace std;
 using namespace JStd;
+using JStd::CmdLine::CmdLine;
+
+void problem(CmdLine& cmdLine);
+static bool registered = JStd::CmdLine::Register(L"14", problem);
+
 
 typedef __int64 calc_int_type;
 
@@ -84,11 +84,12 @@ public:
 	}
 };
 
-void problem(int argc, wchar_t* argv[])
+void problem(CmdLine& cmdLine)
 {
-	if(argc > 2)
+	std::wstring number = cmdLine.next();
+	if(!number.empty())
 	{
-		Ctxt(_wtoi(argv[2])).determineNumberWithMostSteps();
+		Ctxt(_wtoi(number.c_str())).determineNumberWithMostSteps();
 		return;
 	}
 
