@@ -127,14 +127,11 @@ int doit(){
 
 void problem(CmdLine& cmdLine)
 {
-	//doit();
-	//return;
-
-	std::wstring s = cmdLine.next(L's');
-	std::wstring hoi = cmdLine.next(L"hoi");
-	std::wstring dag = cmdLine.next(L'd', L"dag");
-	bool hasA = cmdLine.hasOption(L'a');
-	bool hasB = cmdLine.hasOption(L'b', L"bla");
+	if(cmdLine.hasOption(L'o', L"other"))
+	{
+		doit();
+		return;
+	}
 
 	std::wstring number = cmdLine.next();
 	if(!number.empty())
