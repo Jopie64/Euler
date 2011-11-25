@@ -220,6 +220,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Problem2.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\Problem26.cpp"
 					>
 				</File>
