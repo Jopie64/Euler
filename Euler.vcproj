@@ -212,6 +212,10 @@
 				Name="Problems"
 				>
 				<File
+					RelativePath=".\Problem1.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\Problem14.cpp"
 					>
 				</File>
