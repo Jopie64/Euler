@@ -74,7 +74,9 @@ void problem(CmdLine& cmdLine)
 	for(double angInc = 1; angInc > 0.000000001; angInc *= 0.1)
 		angle = findMaxR(angle, angInc);
 
-	cout << "answer=" << 2*asin(1.) * findR(angle) * findR(angle);
+	cout << "answer=" << 2*asin(1.) * findR(angle) * findR(angle) << endl;
+
+	cout << "answer2=" << (asin(1.)*pow(20., 2)/9.81) * pow(100. + 20.*20./(9.81*2.), 2) << endl;
 
 
 	return;
