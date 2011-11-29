@@ -76,7 +76,7 @@ void problem(CmdLine& cmdLine)
 
 	cout << "answer=" << 2*asin(1.) * findR(angle) * findR(angle) << endl;
 
-	cout << "answer2=" << (asin(1.)*pow(20., 2)/9.81) * pow(100. + 20.*20./(9.81*2.), 2) << endl;
+	cout << "answer2=" << (2*asin(1.)*pow(20., 2.)/9.81) * pow(100. + pow(20.,2.)/(9.81*2.), 2.) << endl;
 
 
 	return;
