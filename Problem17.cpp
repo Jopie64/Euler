@@ -59,10 +59,11 @@ const char* getnumber(long long number)
 void writeBelowThousand(ostream& os, long long number)
 {
 	if(number >= 1000) throw std::logic_error("Number greater than (or equal to) 1000");
-	if(number >= 200)
-		os << getnumber(number / 100);
 	if(number >= 100)
+	{
+		os << getnumber(number / 100);
 		os << getnumber(100);
+	}
 	number %= 100;
 	if(number == 0)
 		return;
@@ -91,7 +92,7 @@ void writeout(ostream& os, long long number)
 		long long part = (number / thousandCalc) % 1000;
 		if(part == 0)
 			continue;
-		if(part > 1 || thousand == 0)
+		//if(part > 1 || thousand == 0)
 			writeBelowThousand(os, part);
 		if(thousandCalc > 1)
 			os << getnumber(thousandCalc);
