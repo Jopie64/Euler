@@ -63,6 +63,8 @@ void writeBelowThousand(ostream& os, long long number)
 	{
 		os << getnumber(number / 100);
 		os << getnumber(100);
+		if(number % 100 > 0)
+			os << "and";
 	}
 	number %= 100;
 	if(number == 0)
@@ -95,7 +97,11 @@ void writeout(ostream& os, long long number)
 		//if(part > 1 || thousand == 0)
 			writeBelowThousand(os, part);
 		if(thousandCalc > 1)
+		{
 			os << getnumber(thousandCalc);
+			if(number % thousandCalc > 0)
+				os << "and";
+		}
 	}
 }
 
