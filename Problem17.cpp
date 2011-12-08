@@ -38,7 +38,7 @@ const char* getnumber(long long number)
 	case 19: return "nineteen";
 	case 20: return "twenty";
 	case 30: return "thirty";
-	case 40: return "fourty";
+	case 40: return "forty";
 	case 50: return "fifty";
 	case 60: return "sixty";
 	case 70: return "seventy";
