@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include <vector>
 #include <cmath>
+#include <sstream>
 
 namespace problem17
 {
@@ -100,6 +101,7 @@ void writeout(ostream& os, long long number)
 void problem(CmdLine& cmdLine)
 {
 	std::wstring numberStr = cmdLine.next();
+	wchar_t* dummy;
 	if(numberStr == L"ask")
 	{
 		long long num;
@@ -116,15 +118,32 @@ void problem(CmdLine& cmdLine)
 		}while(num > 0);
 		return;
 	}
+	if(numberStr == L"say")
+	{
+		long long nr = wcstol(cmdLine.next().c_str(), &dummy, 10);
+		writeout(cout, nr);
+		cout << endl;
+		return;
+	}
 	
 
-	wchar_t* dummy;
+	bool verbose = cmdLine.hasOption(L'v');
+
 	long long nr = wcstol(numberStr.c_str(), &dummy, 10);
 	if(nr == 0)
 		nr = 1000;
 
-	writeout(cout, nr);
-	cout << endl;
+	size_t count =0;
+
+	for(int i=0; i<nr; ++i)
+	{
+		ostringstream os;
+		writeout(os, i+1);
+		if(verbose)
+			cout << i+1 << "=" << os.str() << endl;
+		count += os.str().size();
+	}
+	cout << "And the number is..... " << count << endl;
 }
 
 }
