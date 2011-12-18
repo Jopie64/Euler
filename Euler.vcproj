@@ -247,6 +247,10 @@
 					RelativePath=".\Problem42.cpp"
 					>
 				</File>
+				<File
+					RelativePath=".\Problem48.cpp"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
