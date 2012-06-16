@@ -15,3 +15,7 @@ tests
 /ext/svn/include
 /ext/svn/lib
 /ext/svn/README.txt
+
+/res/Problem59_cipher1_Orig.txt
+/res/Problem59_output.txt
+/res/Problem59_toEncode.txt
