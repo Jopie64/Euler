@@ -39,10 +39,14 @@ __int64 JSigma(__int64 begin, __int64 end, __int64 factor)
 
 __int64 SIGMA2(__int64 n)
 {
-	__int64 count1 = (__int64)sqrt((long double)n);
 	__int64 count2 = n / 2;
+	__int64 i = 1;
+	__int64 divResult = n / i;
+	for(__int64 i = 1; i <= count2; i += divResult);
+	return 0;
+/*
+	__int64 count1 = (__int64)sqrt((long double)n);
 	__int64 result = 0;
-	__int64 i=1;
 	for(; i <= count2; ++i)
 	{
 		int u1 = i*n;
@@ -59,6 +63,7 @@ __int64 SIGMA2(__int64 n)
 	for(; i <= n; ++i)
 		result += i * i;
 	return result;
+*/
 }
 
 void problem(CmdLine& cmdLine)
