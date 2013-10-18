@@ -2,6 +2,8 @@
 #include <vector>
 #include <cmath>
 #include <cstdio>
+#include <iomanip>
+#include <sstream>
 
 namespace pi
 {
@@ -15,14 +17,21 @@ namespace pi
 	void calcPi(CmdLine& cmdLine)
 	{
 		double qpi = 1;
-		int denom = 3;
+		long long denom = 3;
 		double state = -1;
+		int steps = 1;
+		wistringstream(cmdLine.next()) >> steps;
+		if (steps <= 1)
+			steps = 1;
 		while (_getch() != 'q')
 		{
-			qpi += state / denom;
-			state = -state;
-			denom += 2;
-			cout << "denom: " << denom << " pi=(somewhat)" << qpi * 4 << endl;
+			for (int i = 0; i < steps; ++i)
+			{
+				qpi += state / denom;
+				state = -state;
+				denom += 2;
+			}
+			cout << "denom: " << denom << " pi=(somewhat)" << setprecision(30) << qpi * 4 << endl;
 		}
 		cout << "end of pi :)" << endl;
 	}
