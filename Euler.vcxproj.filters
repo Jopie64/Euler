@@ -22,6 +22,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
+    <Filter Include="Source Files\Other">
+      <UniqueIdentifier>{bf17476b-c748-41b3-b2e1-eb8581f70185}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Euler.cpp">
@@ -71,6 +74,9 @@
     </ClCompile>
     <ClCompile Include="Problem59.cpp">
       <Filter>Source Files\Problems</Filter>
+    </ClCompile>
+    <ClCompile Include="Pi.cpp">
+      <Filter>Source Files\Other</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
